@@ -23,7 +23,7 @@ function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-        axios.post('http://localhost:3001/register', formData)
+        axios.post('https://smilespark-a-smart-dental-app-backend.onrender.com/register', formData)
         .then(result => console.log(result))
         navigate('/login')
         .catch(error => console.error(error));
