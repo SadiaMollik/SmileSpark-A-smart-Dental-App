@@ -28,7 +28,7 @@ function AdminRegister() {
       .then(res => {
         console.log(res.data);
         alert("Admin account created successfully!");
-        navigate("/login");
+        navigate("/admin-dashboard");
       })
       .catch(err => {
         console.error(err);
