@@ -24,7 +24,7 @@ function AdminRegister() {
     }
 
     // 🔥 CONNECT TO BACKEND
-    axios.post('http://localhost:3001/admin/register', formData)
+    axios.post('https://smilespark-a-smart-dental-app-backend.onrender.com/admin/register', formData)
       .then(res => {
         console.log(res.data);
         alert("Admin account created successfully!");
