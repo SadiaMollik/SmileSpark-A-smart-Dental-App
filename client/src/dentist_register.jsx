@@ -32,7 +32,7 @@ function DentistRegister() {
     }
 
     // 🔥 CONNECT TO BACKEND
-    axios.post('http://localhost:3001/dentist/register', formData)
+    axios.post('https://smilespark-a-smart-dental-app-backend.onrender.com/dentist/register', formData)
       .then(res => {
         console.log(res.data);
         alert("Dentist account created successfully!");
