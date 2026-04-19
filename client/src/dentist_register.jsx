@@ -32,11 +32,11 @@ function DentistRegister() {
     }
 
     // 🔥 CONNECT TO BACKEND
-    axios.post('https://smilespark-a-smart-dental-app-backend.onrender.com/dentist/register', formData)
+    axios.post('http://localhost:3001/dentist/register', formData)
       .then(res => {
         console.log(res.data);
         alert("Dentist account created successfully!");
-        navigate("/login");
+        navigate("/dentist-dashboard");
       })
       .catch(err => {
         console.error(err);
@@ -47,112 +47,122 @@ function DentistRegister() {
   return (
     <div>
 
-      {/* NAVBAR */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light px-4 shadow-sm">
-        <h3 className="navbar-brand fw-bold">SmileSpark 🦷</h3>
+ <nav className="navbar navbar-expand-lg navbar-light bg-white px-4 shadow-sm sticky-top">
+        <h3 className="navbar-brand fw-bold text-primary fs-3">
+          SmileSpark 🦷
+        </h3>
 
-        <ul className="navbar-nav ms-auto d-flex flex-row align-items-center gap-3">
+        <ul className="navbar-nav ms-auto d-flex flex-row gap-4">
 
-          <li className="nav-item">
-            <Link to="/" className="nav-link">Home</Link>
-          </li>
+          <li><Link to="/" className="nav-link fw-semibold fs-5">Home</Link></li>
+          <li><Link to="/about" className="nav-link fw-semibold fs-5">About</Link></li>
+          <li><Link to="/teethfacts" className="nav-link fw-semibold fs-5">Teeth Facts</Link></li>
+          <li><Link to="/login" className="nav-link fw-semibold fs-5">Login</Link></li>
+          
 
-          <li className="nav-item">
-            <Link to="/about" className="nav-link">About</Link>
-          </li>
-
-          <li className="nav-item">
-            <Link to="/teethfacts" className="nav-link">Teeth Facts</Link>
-          </li>
-
-          <li className="nav-item">
-            <Link to="/login" className="nav-link">Login</Link>
+          <li>
+            <button
+              className="btn btn-outline-primary px-4 rounded-pill fw-semibold"
+              onClick={() => setShowContact(true)}
+            >
+              Contact Us
+            </button>
           </li>
 
         </ul>
       </nav>
 
       {/* FORM */}
-      <div className="container mt-5">
+    <div className="container mt-5 d-flex justify-content-center">
 
-        <h2 className="text-center fw-bold">Dentist Registration</h2>
+  <div className="col-md-7">
 
-        <form onSubmit={handleSubmit} className="mt-4">
+    <div className="card shadow-lg border-0 rounded-4 p-4">
 
-          <div className="mb-3">
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
+      <h2 className="text-center fw-bold text-primary mb-4" style={{ fontSize: "2rem" }}>
+        Dentist Registration
+      </h2>
 
-          <div className="mb-3">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
+      <form onSubmit={handleSubmit}>
 
-          <div className="mb-3">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Name</label>
+          <input
+            type="text"
+            name="name"
+            className="form-control form-control-lg rounded-3"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
 
-          <div className="mb-3">
-            <label>Specialist</label>
-            <input
-              type="text"
-              name="specialist"
-              className="form-control"
-              placeholder="e.g. Orthodontist, Surgeon"
-              value={formData.specialist}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Email</label>
+          <input
+            type="email"
+            name="email"
+            className="form-control form-control-lg rounded-3"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-          <div className="mb-3">
-            <label>University Name</label>
-            <input
-              type="text"
-              name="university"
-              className="form-control"
-              value={formData.university}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Password</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control form-control-lg rounded-3"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
 
-          <div className="mb-3">
-            <label>Passed Year</label>
-            <input
-              type="number"
-              name="passedYear"
-              className="form-control"
-              value={formData.passedYear}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Specialist</label>
+          <input
+            type="text"
+            name="specialist"
+            className="form-control form-control-lg rounded-3"
+            placeholder="e.g. Orthodontist, Surgeon"
+            value={formData.specialist}
+            onChange={handleChange}
+          />
+        </div>
 
-          <button className="btn btn-success w-100">
-            Create Dentist Account
-          </button>
+        <div className="mb-3">
+          <label className="form-label fw-semibold">University Name</label>
+          <input
+            type="text"
+            name="university"
+            className="form-control form-control-lg rounded-3"
+            value={formData.university}
+            onChange={handleChange}
+          />
+        </div>
 
-        </form>
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Passed Year</label>
+          <input
+            type="year"
+            name="passedYear"
+            className="form-control form-control-lg rounded-3"
+            value={formData.passedYear}
+            onChange={handleChange}
+          />
+        </div>
 
-      </div>
+        <button className="btn btn-success w-100 py-2 fw-semibold rounded-3 mt-2">
+          Create Dentist Account
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
 
     </div>
   );
