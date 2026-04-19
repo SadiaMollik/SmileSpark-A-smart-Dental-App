@@ -1,122 +1,176 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
+import projectImage from './project.jpeg';
+import cavityImage from './cavety.jpeg';
+import brushImage from './brushtee.jpeg';
+import foodImage from './food.jpeg';
+import Contactus from './contactus';
 
 function TeethFacts() {
+     const [showContact, setShowContact] = useState(false);
+
     return (
-        <div>
-            {/* Navbar */}
-            <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
-                <h3 className="navbar-brand fw-bold">SmileSpark 🦷</h3>
+        <div
+            style={{
+                background: "linear-gradient(to right, #f8fbff, #eef5ff)",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column"
+            }}
+        >
 
-                <ul className="navbar-nav ms-auto d-flex flex-row gap-3">
-                    <li className="nav-item">
-                        <Link to="/" className="nav-link">Home</Link>
-                    </li>
+            {/* ================= NAVBAR ================= */}
+            <nav className="navbar navbar-expand-lg navbar-light bg-white px-4 shadow-sm sticky-top">
+                <h3 className="navbar-brand fw-bold text-primary fs-3">
+                    SmileSpark 🦷
+                </h3>
 
-                    <li className="nav-item">
-                        <Link to="/about" className="nav-link">About</Link>
-                    </li>
+                <ul className="navbar-nav ms-auto d-flex flex-row gap-4">
 
-                    <li className="nav-item">
-                        <Link to="/login" className="nav-link">Login</Link>
-                    </li>
+                    <li><Link to="/" className="nav-link fw-semibold fs-5">Home</Link></li>
+                    <li><Link to="/about" className="nav-link fw-semibold fs-5">About</Link></li>
+                    <li><Link to="/login" className="nav-link fw-semibold fs-5">Login</Link></li>
 
-                    <li className="nav-item">
-                        <button className="btn btn-outline-primary">
-                            Contact Us
-                        </button>
-                    </li>
+                 
+          <li>
+            <button
+              className="btn btn-outline-primary px-4 rounded-pill fw-semibold"
+              onClick={() => setShowContact(true)}
+            >
+              Contact Us
+            </button>
+          </li>
+
                 </ul>
             </nav>
 
-            {/* Content */}
-            <div className="container mt-5">
-                <h1 className="text-center fw-bold">🦷 Teeth Facts & Care</h1>
-                <p className="text-center">Learn how to keep your smile healthy and strong for life!</p>
+            {/* ================= CONTENT ================= */}
+            <div className="container flex-grow-1 mt-5">
 
+                {/* TITLE */}
+                <h1 className="text-center fw-bold mb-2" style={{ fontSize: "3rem" }}>
+                    🦷 Teeth Facts & Care
+                </h1>
 
+                <p className="text-center text-muted mb-5 fs-5">
+                    Learn how to keep your smile healthy and strong for life!
+                </p>
 
-                {/* FUN FACTS */}
-                <div className="mt-4">
-                    <h3>✨ Fun Facts</h3>
-                    <ul>
-                        <li>Teeth cannot heal themselves once damaged, unlike bones.</li>
-                        <li>Enamel is the hardest substance in the human body—even stronger than bone.</li>
-                        <li>Humans have two sets of teeth: baby teeth (20) and adult teeth (32).</li>
-                        <li>Teeth start forming before you are even born.</li>
-                        <li>People spend around 38 days brushing their teeth over a lifetime.</li>
-                        <li>No two people have the same set of teeth—just like fingerprints!</li>
-                        <li>Saliva plays an important role in protecting teeth from decay.</li>
-                        <li>Tooth decay is one of the most common health issues worldwide.</li>
-                        <li>Sharks can grow thousands of teeth in their lifetime, but humans only get two sets!</li>
-                        <li>Your mouth contains hundreds of different types of bacteria.</li>
-                    </ul>
+                {/* ================= FUN FACTS ================= */}
+                <div className="row align-items-center mb-5">
+
+                    <div className="col-md-6">
+                        <h3 className="fw-bold mb-3">✨ Fun Facts</h3>
+                        <ul className="text-muted fs-5">
+                            <li>Teeth cannot heal themselves once damaged.</li>
+                            <li>Enamel is the hardest substance in the human body.</li>
+                            <li>Humans have 2 sets of teeth in life.</li>
+                            <li>Teeth start forming before birth.</li>
+                            <li>We spend ~38 days brushing in lifetime.</li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-6 text-center">
+                        <img
+                            src={projectImage}
+                            className="img-fluid rounded-4 shadow-lg"
+                            style={{ maxHeight: "320px" }}
+                        />
+                    </div>
+
                 </div>
 
-                {/* CAVITIES */}
-                <div className="mt-4">
-                    <h3>🦠 What are Cavities?</h3>
-                    <ul>
-                        <li>Cavities are tiny holes in teeth caused by bacteria breaking down sugar.</li>
-                        <li>When you eat sugary foods, bacteria produce acid that attacks enamel.</li>
-                        <li>Over time, this acid weakens and damages the tooth surface.</li>
-                        <li>If untreated, cavities can grow bigger and reach inner layers of the tooth.</li>
-                        <li>Cavities can cause pain, sensitivity, and infection.</li>
-                        <li>Common signs include toothache, bad breath, and visible holes.</li>
-                        <li>Drinking sugary drinks frequently increases the risk.</li>
-                        <li>Poor oral hygiene is a major cause of cavities.</li>
-                        <li>Regular dental check-ups help detect cavities early.</li>
-                        <li>Fluoride helps repair early stages of tooth decay.</li>
-                    </ul>
+                {/* ================= CAVITIES ================= */}
+                <div className="row align-items-center mb-5">
+
+                    <div className="col-md-6 text-center">
+                        <img
+                            src={cavityImage}
+                            className="img-fluid rounded-4 shadow-lg"
+                            style={{ maxHeight: "320px" }}
+                        />
+                    </div>
+
+                    <div className="col-md-6">
+                        <h3 className="fw-bold mb-3">🦠 Cavities</h3>
+                        <ul className="text-muted fs-5">
+                            <li>Cavities are caused by bacteria and sugar.</li>
+                            <li>Acid damages enamel over time.</li>
+                            <li>Poor hygiene increases risk.</li>
+                            <li>Can cause pain and infection.</li>
+                            <li>Fluoride helps prevent decay.</li>
+                        </ul>
+                    </div>
+
                 </div>
 
-                {/* BRUSHING */}
-                <div className="mt-4">
-                    <h3>🪥 Brushing Tips</h3>
-                    <ul>
-                        <li>Brush your teeth at least twice a day (morning and before bed).</li>
-                        <li>Use fluoride toothpaste to strengthen enamel.</li>
-                        <li>Brush for at least 2 minutes each time.</li>
-                        <li>Use a soft-bristled toothbrush to avoid damaging gums.</li>
-                        <li>Replace your toothbrush every 3–4 months.</li>
-                        <li>Hold your brush at a 45-degree angle along the gum line.</li>
-                        <li>Don’t forget to brush your tongue.</li>
-                        <li>Use gentle circular motions instead of harsh scrubbing.</li>
-                        <li>Rinse lightly to keep fluoride effective.</li>
-                        <li>Floss daily to clean between teeth.</li>
-                        <li>Avoid brushing immediately after acidic foods (wait 30 min).</li>
-                        <li>Encourage children to brush properly with supervision.</li>
-                    </ul>
+                {/* ================= BRUSHING ================= */}
+                <div className="row align-items-center mb-5">
+
+                    <div className="col-md-6">
+                        <h3 className="fw-bold mb-3">🪥 Brushing Tips</h3>
+                        <ul className="text-muted fs-5">
+                            <li>Brush twice daily for 2 minutes.</li>
+                            <li>Use fluoride toothpaste.</li>
+                            <li>Floss daily.</li>
+                            <li>Replace brush every 3 months.</li>
+                            <li>Brush tongue too.</li>
+                        </ul>
+                    </div>
+
+                    <div className="col-md-6 text-center">
+                        <img
+                            src={brushImage}
+                            className="img-fluid rounded-4 shadow-lg"
+                            style={{ maxHeight: "320px" }}
+                        />
+                    </div>
+
                 </div>
 
-                {/* HEALTHY FOOD */}
-                <div className="mt-4">
-                    <h3>🥦 Healthy Food for Teeth</h3>
-                    <ul>
-                        <li>Milk, cheese, and yogurt are rich in calcium for strong teeth.</li>
-                        <li>Leafy greens like spinach and kale help strengthen enamel.</li>
-                        <li>Crunchy fruits and vegetables (apples, carrots) help clean teeth naturally.</li>
-                        <li>Nuts and seeds provide essential minerals like phosphorus.</li>
-                        <li>Drinking water helps wash away food particles and bacteria.</li>
-                        <li>Green tea reduces harmful bacteria in the mouth.</li>
-                        <li>Eggs provide vitamin D for calcium absorption.</li>
-                        <li>Strawberries may help naturally whiten teeth.</li>
-                        <li>Avoid sugary snacks, sodas, and sticky candies.</li>
-                        <li>Limit acidic foods like citrus and soft drinks.</li>
-                        <li>Sugar-free gum increases saliva production.</li>
-                        <li>Whole grains support gum health.</li>
-                    </ul>
+                {/* ================= FOOD ================= */}
+                <div className="row align-items-center mb-5">
+
+                    <div className="col-md-6 text-center">
+                        <img
+                            src={foodImage}
+                            className="img-fluid rounded-4 shadow-lg"
+                            style={{ maxHeight: "320px" }}
+                        />
+                    </div>
+
+                    <div className="col-md-6">
+                        <h3 className="fw-bold mb-3">🥦 Healthy Food</h3>
+                        <ul className="text-muted fs-5">
+                            <li>Milk, cheese strengthen teeth.</li>
+                            <li>Fruits help clean teeth naturally.</li>
+                            <li>Water removes bacteria.</li>
+                            <li>Green tea reduces germs.</li>
+                            <li>Avoid sugary snacks.</li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
-            {/* Footer */}
-            <footer className="bg-light text-center p-3">
-                © 2026 SmileSpark. All rights reserved.
-            </footer>
 
+            {/* ================= FOOTER ================= */}
+              {/* FOOTER */}
+    <footer className="bg-white text-center p-3 shadow-sm mt-auto">
+        <small className="text-muted fs-6">
+            © 2026 SmileSpark. All rights reserved.
+        </small>
+    </footer>
+    {/* ================= CONTACT MODAL ================= */}
+<Contactus
+  show={showContact}
+  onClose={() => setShowContact(false)}
+/>
+
+            
 
         </div>
-
-
     );
 }
 
