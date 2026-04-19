@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const DentistSchema = new mongoose.Schema({
@@ -31,6 +30,13 @@ const DentistSchema = new mongoose.Schema({
   passedYear: {
     type: Number,
     required: true
+  },
+
+  // ✅ THIS IS YOUR KEY FIELD
+  status: {
+    type: String,
+    enum: ["active", "booked"],
+    default: "active"
   }
 
 }, { timestamps: true });
