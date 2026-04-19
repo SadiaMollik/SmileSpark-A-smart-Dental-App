@@ -1,118 +1,124 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
 
-function Signup() {
-    const navigate = useNavigate();
+function Login() {
+  const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
-        role: ""
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    role: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
+  };
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        axios.post('https://smilespark-a-smart-dental-app-backend.onrender.com/login', formData)
-        .then(result => console.log(result))
-        navigate('/home')
-        .catch(error => console.error(error));
-    };
+    if (!formData.email || !formData.password || !formData.role) {
+      alert("All fields are required");
+      return;
+    }
 
-    return (
-        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-            <div className="bg-white p-3 rounded w-25">
-                <h2>Register</h2>
+    axios.post("http://localhost:3001/login", formData)
+      .then(res => {
 
-                <form onSubmit={handleSubmit}>
+        console.log(res.data);
 
-                    {/* Name */}
-                    <div className="mb-3">
-                        <label><strong>Name</strong></label>
-                        <input 
-                            type="text" 
-                            placeholder="Enter Name" 
-                            autoComplete="off"
-                            name="name" 
-                            className="form-control rounded-0"
-                            value={formData.name}
-                            onChange={handleChange}
-                        />
-                    </div>
+        // ✅ FIX: extract user correctly
+        const user = res.data.user;
 
-                    {/* Email */}
-                    <div className="mb-3">
-                        <label><strong>Email</strong></label>
-                        <input 
-                            type="email" 
-                            placeholder="Enter Email" 
-                            autoComplete="off"
-                            name="email" 
-                            className="form-control rounded-0"
-                            value={formData.email}
-                            onChange={handleChange}
-                        />
-                    </div>
+        if (!user) {
+          alert("Login failed");
+          return;
+        }
 
-                    {/* Password */}
-                    <div className="mb-3">
-                        <label><strong>Password</strong></label>
-                        <input 
-                            type="password" 
-                            placeholder="Enter Password" 
-                            autoComplete="off"
-                            name="password" 
-                            className="form-control rounded-0"
-                            value={formData.password}
-                            onChange={handleChange}
-                        />
-                    </div>
+        // ✅ store only user
+        localStorage.setItem("user", JSON.stringify(user));
 
-                    {/* Role */}
-                    <div className="mb-3">
-                        <label><strong>Role</strong></label>
-                        <select 
-                            name="role" 
-                            className="form-control rounded-0"
-                            value={formData.role}
-                            onChange={handleChange}
-                        >
-                            <option value="">Select Role</option>
-                            <option value="admin">Admin</option>
-                            <option value="patient">Patient</option>
-                            <option value="dentist">Dentist</option>
-                        </select>
-                    </div>
+        // ✅ redirect using BACKEND role (not formData)
+        if (user.role === "admin") {
+          navigate("/admin-dashboard");
+        }
+        else if (user.role === "dentist") {
+          navigate("/dentist-dashboard");
+        }
+        else if (user.role === "patient") {
+          navigate("/patient-dashboard");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Invalid email, password or role");
+      });
+  };
 
-                    {/* Submit */}
-                    <button type="submit" className="btn btn-success w-100 rounded-0">
-                        Register
-                    </button>
+  return (
+    <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
 
-                </form>
+      <div className="bg-white p-4 rounded w-25">
+        <h2 className="text-center">Login</h2>
 
-                <p className="mt-2">Already have an account?</p>
+        <form onSubmit={handleSubmit}>
 
-                <Link 
-                    to="/login"
-                    className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
-                >
-                    Login
-                </Link>
+          <div className="mb-3">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
 
-            </div>
-        </div>
-    );
+          <div className="mb-3">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label>Role</label>
+            <select
+              name="role"
+              className="form-control"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="">Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="patient">Patient</option>
+              <option value="dentist">Dentist</option>
+            </select>
+          </div>
+
+          <button className="btn btn-success w-100">
+            Login
+          </button>
+
+        </form>
+
+        <p className="mt-3">Don't have an account?</p>
+
+        <Link to="/" className="btn btn-outline-dark w-100">
+          Go Back
+        </Link>
+
+      </div>
+    </div>
+  );
 }
 
-export default Signup;
+export default Login;
