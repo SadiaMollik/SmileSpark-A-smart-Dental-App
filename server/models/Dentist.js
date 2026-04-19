@@ -32,7 +32,6 @@ const DentistSchema = new mongoose.Schema({
     required: true
   },
 
-  // ✅ THIS IS YOUR KEY FIELD
   status: {
     type: String,
     enum: ["active", "booked"],
