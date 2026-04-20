@@ -16,7 +16,7 @@ function AdminManageDentists() {
   }, []);
 
   const fetchDentists = () => {
-    axios.get("http://localhost:3001/dentists/all")
+    axios.get("https://smilespark-a-smart-dental-app-backend.onrender.com/dentists/all")
       .then(res => {
         setDentists(res.data);
       })
@@ -29,7 +29,7 @@ function AdminManageDentists() {
   const handleBlock = (id) => {
     if (!window.confirm("Are you sure you want to block this dentist?")) return;
 
-    axios.delete(`http://localhost:3001/dentist/block/${id}`)
+    axios.delete(`https://smilespark-a-smart-dental-app-backend.onrender.com/dentist/block/${id}`)
       .then(() => {
         alert("Dentist blocked successfully");
 
