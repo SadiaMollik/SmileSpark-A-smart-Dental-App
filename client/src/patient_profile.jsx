@@ -24,7 +24,7 @@ function PatientProfile() {
   useEffect(() => {
     if (!user?.id) return;
 
-    axios.get(`http://localhost:3001/patient/${user.id}`)
+    axios.get(`https://smilespark-a-smart-dental-app-backend.onrender.com/patient/${user.id}`)
       .then(res => {
         setFormData({
           name: res.data.name || "",
@@ -47,7 +47,7 @@ function PatientProfile() {
 
   // ================= UPDATE PROFILE =================
   const handleUpdate = () => {
-    axios.put(`http://localhost:3001/patient/${user.id}`, formData)
+    axios.put(`https://smilespark-a-smart-dental-app-backend.onrender.com/patient/${user.id}`, formData)
       .then(res => {
         alert("Profile updated successfully");
 
