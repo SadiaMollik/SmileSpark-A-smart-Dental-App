@@ -27,29 +27,7 @@ import AdminBookAppointment from "./admin_book_appointment";
 import AdminCheckMsg from './admin_check_msg';
 import Weather from './weather';
 
-import { useEffect } from 'react';
-
-
-const CLIENT_ID = "309792278374-vgi7nchvbfalunnj6eu10rqt8vasltko.apps.googleusercontent.com";
-const API_KEY = "AIzaSyA1w3KmJNdBToGWvlL-IcR9E9lYdLE0bMw";
-const DISCOVERY_DOC = "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest";
-const SCOPES = "https://www.googleapis.com/auth/calendar";
-
 function App() {
-
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: [DISCOVERY_DOC],
-        scope: SCOPES,
-      });
-    }
-
-    gapi.load("client:auth2", start);
-  }, []);
-
   return (
     <BrowserRouter>
       <Routes>
