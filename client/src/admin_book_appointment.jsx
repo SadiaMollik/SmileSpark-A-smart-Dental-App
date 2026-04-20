@@ -21,7 +21,7 @@ function AdminBookAppointment() {
 
   // ================= FETCH DENTISTS =================
   useEffect(() => {
-    axios.get("http://localhost:3001/dentist/active")
+    axios.get("https://smilespark-a-smart-dental-app-backend.onrender.com/dentist/active")
       .then(res => setDentists(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -47,7 +47,7 @@ function AdminBookAppointment() {
       return;
     }
 
-    axios.post("http://localhost:3001/appointment/book", {
+    axios.post("https://smilespark-a-smart-dental-app-backend.onrender.com/appointment/book", {
       patientId: user.id, // admin is booking on behalf
       dentistId: selectedDentist._id,
       patientName: "Booked by Admin",
