@@ -20,7 +20,7 @@ function PatientBookAppointment() {
 
   // ================= FETCH ACTIVE DENTISTS =================
   useEffect(() => {
-    axios.get("http://localhost:3001/dentist/active")
+    axios.get("https://smilespark-a-smart-dental-app-backend.onrender.com/dentist/active")
       .then(res => setDentists(res.data))
       .catch(err => console.log(err));
   }, []);
