@@ -29,7 +29,7 @@ function ContactModal({ show, onClose }) {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:3001/contact",
+        "https://smilespark-a-smart-dental-app-backend.onrender.com/contact",
         formData
       );
 
