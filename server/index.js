@@ -223,6 +223,19 @@ app.delete("/appointment/delete/:id", async (req, res) => {
   }
 });
 
+// ================= GET DENTIST APPOINTMENTS =================
+app.get("/appointment/dentist/:id", async (req, res) => {
+  try {
+    const appointments = await Appointment.find({
+      dentistId: req.params.id
+    });
+
+    res.json(appointments);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 /* ================= PATIENTS ================= */
 app.get("/patients/all", async (req, res) => {
   try {
