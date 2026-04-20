@@ -17,14 +17,14 @@ function AdminCheckMsg() {
 
   // ================= FETCH CONTACT MESSAGES =================
   useEffect(() => {
-    axios.get("http://localhost:3001/contact")
+    axios.get("https://smilespark-a-smart-dental-app-backend.onrender.com/contact")
       .then(res => setMessages(res.data))
       .catch(err => console.log("FETCH ERROR:", err));
   }, []);
 
   // ================= DELETE MESSAGE =================
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/contact/${id}`)
+    axios.delete(`https://smilespark-a-smart-dental-app-backend.onrender.com/contact/${id}`)
       .then(() => {
         setMessages(prev => prev.filter(msg => msg._id !== id));
         alert("Message deleted");
@@ -49,7 +49,7 @@ function AdminCheckMsg() {
       return;
     }
 
-axios.post("http://localhost:3001/contact/reply", {
+axios.post("https://smilespark-a-smart-dental-app-backend.onrender.com/contact/reply", {
   email: selectedEmail,
   message: replyText
 })
