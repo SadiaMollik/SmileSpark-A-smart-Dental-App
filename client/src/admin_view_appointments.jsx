@@ -16,7 +16,7 @@ function AdminViewAppointments() {
   }, []);
 
   const fetchAppointments = () => {
-    axios.get("http://localhost:3001/appointment/all")
+    axios.get("https://smilespark-a-smart-dental-app-backend.onrender.com/appointment/all")
       .then(res => {
         setAppointments(res.data);
       })
@@ -29,7 +29,7 @@ function AdminViewAppointments() {
   const handleCancel = (id) => {
     if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
 
-    axios.delete(`http://localhost:3001/appointment/delete/${id}`)
+    axios.delete(`https://smilespark-a-smart-dental-app-backend.onrender.com/appointment/delete/${id}`)
       .then(() => {
         alert("Appointment cancelled successfully");
 
