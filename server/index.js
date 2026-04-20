@@ -17,9 +17,13 @@ app.use(cors());
 
 /* ================= CONNECT MONGODB ================= */
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected to SmileSpark"))
-  .catch(err => console.log(err));
-
+  .then(() => {
+    console.log("MongoDB connected successfully 🚀");
+  })
+  .catch((err) => {
+    console.log("MongoDB connection failed ❌");
+    console.log(err);
+  });
 /* ================= REGISTER ================= */
 app.post('/admin/register', async (req, res) => {
   try {
