@@ -28,7 +28,7 @@ import AdminCheckMsg from './admin_check_msg';
 import Weather from './weather';
 
 import { useEffect } from 'react';
-import { gapi } from 'gapi-script';
+
 
 const CLIENT_ID = "309792278374-vgi7nchvbfalunnj6eu10rqt8vasltko.apps.googleusercontent.com";
 const API_KEY = "AIzaSyA1w3KmJNdBToGWvlL-IcR9E9lYdLE0bMw";
