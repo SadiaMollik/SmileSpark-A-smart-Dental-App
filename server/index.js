@@ -324,6 +324,11 @@ app.put("/patient/:id", async (req, res) => {
   }
 });
 
+app.get("/test", (req, res) => {
+  res.json({ message: "Backend is working fine 🚀" });
+});
+
+
 /* ================= SERVER ================= */
 const PORT = process.env.PORT || 3001;
 
