@@ -26,7 +26,7 @@ function Login() {
       return;
     }
 
-    axios.post("http://localhost:3001/login", formData)
+    axios.post("https://smilespark-a-smart-dental-app-backend.onrender.com/login", formData)
       .then(res => {
 
         console.log(res.data);
