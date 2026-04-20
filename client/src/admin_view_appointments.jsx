@@ -29,11 +29,11 @@ function AdminViewAppointments() {
   const handleCancel = (id) => {
     if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
 
-    axios.delete(`https://smilespark-a-smart-dental-app-backend.onrender.com/appointment/delete/${id}`)
+    // ✅ FIXED ONLY THIS LINE
+    axios.delete(`https://smilespark-a-smart-dental-app-backend.onrender.com/appointment/${id}`)
       .then(() => {
         alert("Appointment cancelled successfully");
 
-        // remove from UI instantly
         setAppointments(prev => prev.filter(app => app._id !== id));
       })
       .catch(err => {
@@ -45,7 +45,7 @@ function AdminViewAppointments() {
   return (
     <div style={{ background: "linear-gradient(to right, #f8fbff, #eef5ff)", minHeight: "100vh" }}>
 
-     {/* ================= NAVBAR ================= */}
+      {/* NAVBAR */}
       <nav className="navbar navbar-expand-lg navbar-light bg-white px-4 shadow-sm sticky-top">
         <h3 className="navbar-brand fw-bold text-primary fs-3">
           SmileSpark 🦷
@@ -56,23 +56,13 @@ function AdminViewAppointments() {
           <li><Link to="/about" className="nav-link fw-semibold fs-5">About</Link></li>
           <li><Link to="/teethfacts" className="nav-link fw-semibold fs-5">Teeth Facts</Link></li>
           <li><Link to="/logout" className="nav-link fw-semibold fs-5 btn btn-danger">Logout</Link></li>
-{/* 
-          <li>
-            <button
-              className="btn btn-outline-primary px-4 rounded-pill fw-semibold"
-              onClick={() => setShowContact(true)}
-            >
-              Contact Us
-            </button>
-          </li> */}
         </ul>
       </nav>
 
-      {/* ================= DASHBOARD ================= */}
+      {/* DASHBOARD */}
       <div className="container-fluid mt-4">
         <div className="row g-4">
 
-          {/* ================= SIDEBAR ================= */}
           <div className="col-md-3">
             <div className="bg-light p-4 rounded-4 shadow-sm h-100" style={{ minHeight: "85vh" }}>
 
@@ -105,10 +95,8 @@ function AdminViewAppointments() {
                   View Appointments
                 </button>
 
-                <button
-                  className="btn w-100 bg-white text-primary fw-semibold shadow-sm"
-                  onClick={() => navigate('/admin_check_msg')}
-                >
+                <button className="btn w-100 bg-white text-primary fw-semibold shadow-sm"
+                  onClick={() => navigate('/admin_check_msg')}>
                   Check Messages
                 </button>
 
@@ -116,7 +104,7 @@ function AdminViewAppointments() {
             </div>
           </div>
 
-          {/* ================= MAIN CONTENT ================= */}
+          {/* MAIN */}
           <div className="col-md-9">
             <div className="bg-white p-5 rounded-4 shadow-sm">
 
@@ -149,7 +137,6 @@ function AdminViewAppointments() {
                           </span>
                         </p>
 
-                        {/* ================= CANCEL BUTTON ================= */}
                         <button
                           className="btn btn-danger mt-2"
                           onClick={() => handleCancel(app._id)}
@@ -170,7 +157,7 @@ function AdminViewAppointments() {
         </div>
       </div>
 
-      {/* ================= FOOTER ================= */}
+      {/* FOOTER */}
       <footer className="bg-white text-center p-3 shadow-sm mt-4">
         <small>© 2026 SmileSpark. All rights reserved.</small>
       </footer>
