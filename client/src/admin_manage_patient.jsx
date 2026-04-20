@@ -16,7 +16,7 @@ function AdminManagePatient() {
   }, []);
 
   const fetchPatients = () => {
-    axios.get("http://localhost:3001/patients/all")
+    axios.get("https://smilespark-a-smart-dental-app-backend.onrender.com/patients/all")
       .then(res => {
         setPatients(res.data);
       })
@@ -29,7 +29,7 @@ function AdminManagePatient() {
   const handleBlock = (id) => {
     if (!window.confirm("Are you sure you want to block this patient?")) return;
 
-    axios.delete(`http://localhost:3001/patient/block/${id}`)
+    axios.delete(`https://smilespark-a-smart-dental-app-backend.onrender.com/patient/block/${id}`)
       .then(() => {
         alert("Patient blocked successfully");
 
