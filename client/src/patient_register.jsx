@@ -28,7 +28,7 @@ function PatientRegister() {
       alert("All fields are required");
       return;
     }
-    axios.post('http://localhost:3001/patient/register', formData)
+    axios.post('https://smilespark-a-smart-dental-app-backend.onrender.com/patient/register', formData)
       .then(res => {
         console.log(res.data);
         alert("Patient account created successfully!");
